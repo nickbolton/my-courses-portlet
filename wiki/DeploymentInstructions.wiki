@@ -3,7 +3,7 @@
 
 = Introduction =
 
-This page instructs on how to install this portlet once [BuildingFromSource built from source]. 
+This page instructs on how to install this portlet once [BuildFromSource built from source]. 
 
 = Details =
 
@@ -45,7 +45,9 @@ location of your war file. For example:
     portlet.war=path-to-my-war/${portlet.war.name}.war
 }}}
 
-== Deploying to Pluto ==
+== Deploy to your portlet container ==
+
+=== Deploying to Pluto ===
 To deploy to Pluto run:
 
 {{{
@@ -84,7 +86,7 @@ Then change the web-app element to reference the 2.4 XMLSchema:
 Note that the 'plutoPostDeployment' target is unecessary if you deployed using
 'plutoDeploy'.
 
-== Register the portlet if you did not use the Pluto web UI ==
+==== Register the portlet if you did not use the Pluto web UI ====
 
 If you did not use the Pluto web UI to deploy your portlet, you will need to modify 
 pageregistry.xml in your Pluto installation. Specifically, given the following entry in
@@ -120,7 +122,9 @@ add this to pageregistry.xml:
     </fragment>
 }}}
 
-5) To deploy to uPortal run:
+
+== Deploying to uPortal ==
+To deploy to uPortal run:
 
 {{{
     % ant uPortalDeploy 
