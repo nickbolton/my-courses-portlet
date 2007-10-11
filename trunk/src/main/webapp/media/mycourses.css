@@ -1,0 +1,166 @@
+/*
+ * Copyright (C) 2007 Unicon, Inc.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this distribution.  It is also available here:
+ * http://www.fsf.org/licensing/licenses/gpl.html
+ *
+ * As a special exception to the terms and conditions of version
+ * 2 of the GPL, you may redistribute this Program in connection
+ * with Free/Libre and Open Source Software ("FLOSS") applications
+ * as described in the GPL FLOSS exception.  You should have received
+ * a copy of the text describing the FLOSS exception along with this
+ * distribution.
+ */
+
+/****************************
+***  My Courses Portlet  ****
+***  Unicon, Inc.        ****
+****************************/
+
+/**** ZERO OUT *******/
+.my-courses div, .my-courses ul, .my-courses li, .my-courses a, .my-courses table, .my-courses td {
+	margin: 0;
+	padding: 0;
+	font-size: 10pt;
+}
+
+
+.my-courses {
+	width: 100%;
+}
+.my-courses a, .my-courses a:link, .my-courses a:visited {
+	text-decoration: underline;
+}
+.my-courses .tab-list {
+	text-align: left;
+	padding: 0 0 0 10px;
+	background-color: #F1F1F1;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #CCCCCC;
+	height: 33px;
+	_height: 34px;
+	position: relative;
+}
+.my-courses .tab-list ul {
+	list-style: none;
+	padding: 0;
+	margin: 5px 0 0 0;
+	position: absolute;
+}
+.my-courses .tab-list li {
+	float: left;
+	padding: 0 0 0 5px;
+	margin: 0 4px 0 0;
+	background: url('mycourses_tab_left.gif') top left no-repeat;
+	width: auto;
+}
+.my-courses .tab-list li a, .my-courses .tab-list li a:link, .my-courses .tab-list li a:visited {
+	display: block;
+	background: url('mycourses_tab_right.gif') top right no-repeat;
+	padding: 6px 10px 6px 5px;
+	text-decoration: none;
+	height: 16px;	
+	_height: auto;
+}
+
+.my-courses .tab-list li.active {
+	background: url('mycourses_tab_left_active.gif') top left no-repeat;
+}
+.my-courses .tab-list li.active a, .my-courses .tab-list li.active a:link, .my-courses .tab-list li.active a:visited {
+	background: url('mycourses_tab_right_active.gif') top right no-repeat;
+	padding-bottom: 7px;
+}
+.my-courses .date-filter {
+	padding: 0px 10px;
+}
+
+.my-courses .sites-table {
+	width: 100%;
+	margin: 20px 0 5px 0;
+	padding: 0;
+	background-color: #FBFBFB;
+}
+.my-courses caption {
+	position: absolute;
+	left: -999px;
+	color: #FFFFFF;
+}
+.my-courses .sites-table th {
+	text-align: left;
+	background-color: #999999;
+	color: #FFFFFF;
+	padding: 3px 10px;
+}
+.my-courses .sites-table td {
+	vertical-align: top;
+	padding: 10px;
+}
+.my-courses .sites-table .shade {
+	background-color: #EEEEEE;
+}
+.my-courses .error-message {
+	margin: 10px 0;
+	padding: 20px 10px;
+	border: 1px solid #BBBBBB;
+	color: #666666;
+	background-color: #FFFFCC;
+	text-align: center;
+}
+.my-courses .hidden {
+	display: none;
+}
+.my-courses .emptyList {
+	display: none;
+	padding: 20px;
+	background-color: #EEEEEE;
+	text-align: center;
+}
+.my-courses .emptylist h4{
+	margin-top: 0;
+}
+.my-courses .emptylist a, .my-courses .emptylist a:link, .my-courses .emptylist a:visited {
+	padding-right: 12px;
+	background: url('arrow_up.gif') top right no-repeat;
+}
+.my-courses .additional-links {
+	padding-top: 25px;
+	text-align: center;
+}
+.my-courses .join-sites {
+	text-align: center;
+	padding: 10px;
+	border: 1px solid #E2E2E2;
+	background-color: #F8F8F8;
+}
+.my-courses .join-sites a, .my-courses .join-sites a:link, .my-courses .join-sites a:visited {
+	padding-right: 12px;
+	background: url('arrow_up.gif') top right no-repeat;
+}
+.my-courses .help-container {
+	padding: 40px 0;
+	text-align: center;
+	background-color: #EEEEEE;
+}
+.my-courses .minimized-container {
+	padding: 10px 0px;
+}
+.my-courses .my-workspace {
+	padding: 20px;
+	background-color: #EEEEEE;
+	text-align: center;
+}
+.my-courses .my-workspace a, .my-courses .my-workspace a:link, .my-courses .my-workspace a:visited {
+	padding-right: 12px;
+	background: url('arrow_up.gif') top right no-repeat;
+}
