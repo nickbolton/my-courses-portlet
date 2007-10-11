@@ -1,0 +1,29 @@
+#summary Ideas for directions to go with this portlet.
+#labels Featured,Phase-Requirements
+
+= Support additional course management systems =
+
+The MyCourses Portlet could be expanded to support additional course management systems beyond [http://www.unicon.net/sakai Sakai].  For instance, there are IChannels commonly used with uPortal implementing similar WebCT and Blackboard summary-with-links integrations.  Currently, these codebases are disparate, their UIs are disparate, and occasionally the WebCT and Blackboard channels feel fragile across versions.  It might be a more maintainable and synergistic world if there were a single modern best-practices Spring PortletMVC portlet implementing a usable and accessible UI with plugins available for the various versions of various course management systems in use by the higher education portal community.
+
+That is, the effort to have a simple, beautiful, usable, accessible summary integration to a newly arrived course management system version could be reduced to implementing a simple plugin API.
+
+= User Experience Improvements =
+
+Possibly, use Fluid components where appropriate.
+
+Provide a more accessible UI.
+
+= Deeper Integration =
+
+== Single Sign On ==
+
+Currently users will experience SSO only when the portlet is used in concert with an enterprise SSO system such as the [http://www.ja-sig.org/products/cas/ Central Authentication Service] or PubCookie.  Integrations with particular course management systems and the link production in the UI could be enhanced to provide inherently single-on-signing links.
+
+== Indicators ==
+Indication of how recently the linked sites have changed, whether there are new messages, pulling up announcements -- at the cost of additional complexity in implementation and in user interface, richer dashboard functionality could be implemented.
+
+Andrew has a random pet feature idea around subtle indications of recentness of changes borrowing cues from [http://www.unicon.net/support/knowledgebase/tagcloud tag clouds], with more recently updated sites' hyperlinks appearing continuously *bolder* than staler sites.  Take that for whatever it's worth.
+
+= Other ideas =
+
+Other ideas for directions this portlet could go?  Comment!  Jump in!
