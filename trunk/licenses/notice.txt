@@ -1,0 +1,7 @@
+Portions of this software distribution require certain copyright
+or other notices to be included with the distribution.
+These notice may also appear in individual source files.
+
+This software distribution includes software (jQuery) developed by
+John Resig (http://jquery.com/) and licensed for inclusion here
+under the MIT License: http://www.opensource.org/licenses/mit-license.php
