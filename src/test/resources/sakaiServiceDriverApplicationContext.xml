@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+  <bean id="net.unicon.mycourses.services.util.SakaiServiceDriver" class="net.unicon.mycourses.services.util.SakaiServiceDriver">
+  
+    <property name="secret">
+        <value>secret</value>
+    </property>
+    
+    <property name="userName">
+        <!-- <value>admin</value>   -->
+        <value>admin</value>
+    </property>
+    
+    <property name="service">
+        <ref bean="net.unicon.mycourses.services.SakaiService" />
+    </property>
+  
+  </bean>
+  
+  
+  
+  <bean id="net.unicon.mycourses.services.SakaiService" class="net.unicon.mycourses.services.SakaiServiceDelegatingImpl">
+      <property name="serviceDelegateFactory">
+          <ref bean="net.unicon.mycourses.services.SakaiServiceDelegateFactory" />
+      </property>
+  </bean>
+
+
+
+  <!-- acts as a factory for net.unicon.sakai.portalservices.api.SakaiLoginService and
+       net.unicon.sakai.portalservices.api.SakaiSiteService beans (implements ApplicationContextAware) -->    
+  <bean id="net.unicon.mycourses.services.SakaiServiceDelegateFactory" class="net.unicon.mycourses.services.SakaiServiceDelegateFactorySpringImpl" />
+
+
+
+  <bean id="net.unicon.sakai.portalservices.api.SakaiLoginService" 
+        class="net.unicon.mycourses.services.DisguisedJaxRpcPortProxyFactoryBean"
+        singleton="false">
+        <property name="serviceInterface">
+            <value>net.unicon.sakai.portalservices.api.SakaiLoginService</value>
+        </property>
+        
+        <!-- TODO: file system location? -->
+        <property name="wsdlDocumentUrl">
+           <!--  <value>http://localhost:8081/sakai-portal-services/services/SakaiLoginService?wsdl</value>-->
+            <value>http://10.10.10.32:8080/sakai-portal-services/services/SakaiLoginService?wsdl</value>
+          <!--   <value>classpath:SakaiLoginService.wsdl</value> -->
+        </property>
+        
+        <property name="namespaceUri">
+            <value>http://sakai.unicon.net/sakai-portal-services/SakaiLoginService</value>
+        </property>
+        <property name="serviceName">
+            <value>SakaiLoginServiceService</value>
+        </property>
+        <property name="portName">
+            <value>SakaiLoginService</value>
+        </property>
+        
+        <property name="servicePostProcessors">
+            <list>
+                <ref bean="net.unicon.sakai.mycourses.services.SakaiLoginServiceAxisBeanMappings" />
+            </list>
+        </property>
+        
+  </bean>
+
+
+  
+  <bean id="net.unicon.sakai.portalservices.api.SakaiSiteService" 
+        class="net.unicon.mycourses.services.DisguisedJaxRpcPortProxyFactoryBean"
+        singleton="false">
+        
+        <property name="serviceInterface">
+            <value>net.unicon.sakai.portalservices.api.SakaiSiteService</value>
+        </property>
+        
+        <!-- TODO: file system location? -->
+        <property name="wsdlDocumentUrl">
+            <!-- <value>http://localhost:8081/sakai-portal-services/services/SakaiSiteService?wsdl</value>-->
+            <value>http://10.10.10.32:8080/sakai-portal-services/services/SakaiSiteService?wsdl</value>  
+            <!-- <value>classpath:SakaiSiteService.wsdl</value> -->
+        </property>
+        
+        <property name="namespaceUri">
+            <value>http://sakai.unicon.net/sakai-portal-services/SakaiSiteService</value>
+        </property>
+        <property name="serviceName">
+            <value>SakaiSiteServiceService</value>
+        </property>
+        <property name="portName">
+            <value>SakaiSiteService</value>
+        </property>
+        
+        <property name="servicePostProcessors">
+            <list>
+                <ref bean="net.unicon.sakai.mycourses.services.SakaiSiteServiceAxisBeanMappings" />
+            </list>
+        </property>
+        
+  </bean>
+
+
+  
+  <bean id="net.unicon.sakai.mycourses.services.SakaiSiteServiceAxisBeanMappings" class="net.unicon.mycourses.services.PatchedAxisBeanMappingServicePostProcessor">
+  
+    <property name="encodingStyleUri">
+        <value>http://schemas.xmlsoap.org/soap/encoding/</value>
+    </property>
+    
+    <property name="typeNamespaceUri">
+        <value>http://sakai.unicon.net/sakai-portal-services/SakaiSiteService</value>
+    </property>
+    
+    <property name="beanMappings">
+      <props>
+        <prop key="net.unicon.sakai.portalservices.api.Site">Site</prop>
+        <prop key="net.unicon.sakai.portalservices.api.Site[]">ArrayOfSite</prop>
+        <prop key="net.unicon.sakai.portalservices.api.SiteQueryResult">SiteQueryResult</prop>
+        <prop key="net.unicon.sakai.portalservices.api.Term">Term</prop>
+        <prop key="net.unicon.sakai.portalservices.api.Term[]">ArrayOfTerm</prop>
+        <prop key="net.unicon.sakai.portalservices.api.TermQueryResult">TermQueryResult</prop>
+        <prop key="net.unicon.sakai.portalservices.api.StringQueryResult">StringQueryResult</prop>
+      </props>
+    </property>                   
+  
+  </bean>
+
+
+  
+  <bean id="net.unicon.sakai.mycourses.services.SakaiLoginServiceAxisBeanMappings" class="net.unicon.mycourses.services.PatchedAxisBeanMappingServicePostProcessor">
+  
+    <property name="encodingStyleUri">
+      <value>http://schemas.xmlsoap.org/soap/encoding/</value>
+    </property>
+    
+    <property name="typeNamespaceUri">
+      <value>http://sakai.unicon.net/sakai-portal-services/SakaiLoginService</value>
+    </property>
+    
+    <property name="beanMappings">
+      <props>
+        <prop key="net.unicon.sakai.portalservices.api.LoginResult">LoginResult</prop>
+      </props>
+    </property>  
+  
+  </bean>
+
+
+  
+</beans>
