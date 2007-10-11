@@ -12,7 +12,7 @@ The courses view lists the courses in which the user is enrolled in the selected
 [http://my-courses-portlet.googlecode.com/svn/trunk/docs/screenshots/my_courses_courses.png]
 
 = Projects view =
-The projects view lists the on-course sites in which the logged in user is enrolled in the selected term.
+The projects view lists the on-course sites in which the logged in user is enrolled.
 
 http://my-courses-portlet.googlecode.com/svn/trunk/docs/screenshots/my_courses_projects.png
 
