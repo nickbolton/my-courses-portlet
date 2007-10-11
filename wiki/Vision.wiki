@@ -1,6 +1,15 @@
 #summary Ideas for directions to go with this portlet.
 #labels Featured,Phase-Requirements
 
+= Sakai integration non-functional improvements =
+== Make dependencies of this portlet publicly available ==
+
+An important follow-on task here is to also open-source the Unicon-developed Sakai web services code upon which this portlet depends.  There is intent to get that done, it's just a matter of finding some follow-on time to do it.
+
+== Realize alternative Sakai integration layer implementations ==
+
+It may be that core Sakai Web Services have evolved since when this portlet was first designed such that custom services are no longer required.  More RESTful, even Proxy-CAS-ified-XML integration approaches would be a lighter and more accessible alternative.  There is room in the world for more implementations of the Sakai integration plugin or improvements to a single implementation to make it easier to adopt.
+
 = Support additional course management systems =
 
 The MyCourses Portlet could be expanded to support additional course management systems beyond [http://www.unicon.net/sakai Sakai].  For instance, there are IChannels commonly used with uPortal implementing similar WebCT and Blackboard summary-with-links integrations.  Currently, these codebases are disparate, their UIs are disparate, and occasionally the WebCT and Blackboard channels feel fragile across versions.  It might be a more maintainable and synergistic world if there were a single modern best-practices Spring PortletMVC portlet implementing a usable and accessible UI with plugins available for the various versions of various course management systems in use by the higher education portal community.
