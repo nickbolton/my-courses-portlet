@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService" xmlns:intf="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="Term">
+    <sequence>
+     <element name="id" nillable="true" type="soapenc:string"/>
+     <element name="isDefault" type="xsd:boolean"/>
+
+     <element name="name" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Site">
+    <sequence>
+     <element name="instructor" nillable="true" type="soapenc:string"/>
+     <element name="name" nillable="true" type="soapenc:string"/>
+     <element name="term" nillable="true" type="impl:Term"/>
+     <element name="type" nillable="true" type="soapenc:string"/>
+
+     <element name="url" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfSite">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:Site[]"/>
+     </restriction>
+    </complexContent>
+
+   </complexType>
+   <complexType name="SiteQueryResult">
+    <sequence>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="queryResults" nillable="true" type="impl:ArrayOfSite"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfTerm">
+    <complexContent>
+
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:Term[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="TermQueryResult">
+    <sequence>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="queryResults" nillable="true" type="impl:ArrayOfTerm"/>
+
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+
+   <complexType name="StringQueryResult">
+    <sequence>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="queryResults" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getMembershipToolPageURLRequest">
+
+      <wsdl:part name="sessionID" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTermsResponse">
+
+      <wsdl:part name="getTermsReturn" type="impl:TermQueryResult"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getActiveSiteEnrollmentByTermResponse">
+
+      <wsdl:part name="getActiveSiteEnrollmentByTermReturn" type="impl:SiteQueryResult"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getActiveSiteEnrollmentByTypeResponse">
+
+      <wsdl:part name="getActiveSiteEnrollmentByTypeReturn" type="impl:SiteQueryResult"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTermsRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getActiveSiteEnrollmentResponse">
+
+      <wsdl:part name="getActiveSiteEnrollmentReturn" type="impl:SiteQueryResult"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getActiveSiteEnrollmentRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getActiveSiteEnrollmentByTermRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getMembershipToolPageURLResponse">
+
+      <wsdl:part name="getMembershipToolPageURLReturn" type="impl:StringQueryResult"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getActiveSiteEnrollmentByTypeRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="SakaiSiteService">
+
+      <wsdl:operation name="getActiveSiteEnrollment" parameterOrder="in0">
+
+         <wsdl:input message="impl:getActiveSiteEnrollmentRequest" name="getActiveSiteEnrollmentRequest"/>
+
+         <wsdl:output message="impl:getActiveSiteEnrollmentResponse" name="getActiveSiteEnrollmentResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getActiveSiteEnrollmentByTerm" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:getActiveSiteEnrollmentByTermRequest" name="getActiveSiteEnrollmentByTermRequest"/>
+
+         <wsdl:output message="impl:getActiveSiteEnrollmentByTermResponse" name="getActiveSiteEnrollmentByTermResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getActiveSiteEnrollmentByType" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:getActiveSiteEnrollmentByTypeRequest" name="getActiveSiteEnrollmentByTypeRequest"/>
+
+         <wsdl:output message="impl:getActiveSiteEnrollmentByTypeResponse" name="getActiveSiteEnrollmentByTypeResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTerms" parameterOrder="in0">
+
+         <wsdl:input message="impl:getTermsRequest" name="getTermsRequest"/>
+
+         <wsdl:output message="impl:getTermsResponse" name="getTermsResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMembershipToolPageURL" parameterOrder="sessionID">
+
+         <wsdl:input message="impl:getMembershipToolPageURLRequest" name="getMembershipToolPageURLRequest"/>
+
+         <wsdl:output message="impl:getMembershipToolPageURLResponse" name="getMembershipToolPageURLResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SakaiSiteServiceSoapBinding" type="impl:SakaiSiteService">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getActiveSiteEnrollment">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getActiveSiteEnrollmentRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getActiveSiteEnrollmentResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getActiveSiteEnrollmentByTerm">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getActiveSiteEnrollmentByTermRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getActiveSiteEnrollmentByTermResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getActiveSiteEnrollmentByType">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getActiveSiteEnrollmentByTypeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getActiveSiteEnrollmentByTypeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTerms">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTermsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTermsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMembershipToolPageURL">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getMembershipToolPageURLRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://impl.portalservices.sakai.unicon.net" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getMembershipToolPageURLResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="SakaiSiteServiceService">
+
+      <wsdl:port binding="impl:SakaiSiteServiceSoapBinding" name="SakaiSiteService">
+
+         <wsdlsoap:address location="http://localhost:8080/sakai-portal-services/services/SakaiSiteService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
+

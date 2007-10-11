@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope
+	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<soapenv:Body>
+		<ns1:getActiveSiteEnrollmentResponse
+			soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+			xmlns:ns1="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService">
+			<getActiveSiteEnrollmentReturn href="#id0" />
+		</ns1:getActiveSiteEnrollmentResponse>
+		<multiRef id="id0" soapenc:root="0"
+			soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+			xsi:type="ns2:SiteQueryResult"
+			xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+			xmlns:ns2="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService">
+			<errorCode xsi:type="soapenc:string" xsi:nil="true" />
+			<queryResults soapenc:arrayType="ns2:Site[3]"
+				xsi:type="soapenc:Array">
+				<queryResults href="#id1" />
+				<queryResults href="#id2" />
+				<queryResults href="#id3" />
+			</queryResults>
+		</multiRef>
+		<multiRef id="id1" soapenc:root="0"
+			soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+			xsi:type="ns3:Site"
+			xmlns:ns3="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService"
+			xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+			<instructor xsi:type="soapenc:string">instructorA</instructor>
+			<name xsi:type="soapenc:string">siteA</name>
+			<term href="#id4"/>
+			<type xsi:type="soapenc:string">course</type>
+			<url xsi:type="soapenc:string">/url/to/site/A</url>
+		</multiRef>
+		<multiRef id="id2" soapenc:root="0"
+			soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+			xsi:type="ns4:Site"
+			xmlns:ns4="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService"
+			xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+			<instructor xsi:type="soapenc:string">instructorB</instructor>
+			<name xsi:type="soapenc:string">siteB</name>
+			<term href="#id5"/>
+			<type xsi:type="soapenc:string">project</type>
+			<url xsi:type="soapenc:string">/url/to/site/B</url>
+		</multiRef>
+		<multiRef id="id3" soapenc:root="0"
+			soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+			xsi:type="ns5:Site"
+			xmlns:ns5="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService"
+			xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+			<instructor xsi:type="soapenc:string">instructorC</instructor>
+			<name xsi:type="soapenc:string">siteC</name>
+			<term href="#id6"/>
+			<type xsi:type="soapenc:string">home</type>
+			<url xsi:type="soapenc:string">/url/to/site/C</url>
+		</multiRef>
+		<multiRef id="id4" soapenc:root="0" soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xsi:type="ns8:Term" xmlns:ns8="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+            <id xsi:type="soapenc:string">termA</id>
+            <isDefault href="#id7"/>
+            <name xsi:type="soapenc:string">termA</name>
+        </multiRef>
+        <multiRef id="id5" soapenc:root="0" soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xsi:type="ns9:Term" xmlns:ns9="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+            <id xsi:type="soapenc:string">termB</id>
+            <isDefault href="#id8"/>
+            <name xsi:type="soapenc:string">termB</name>
+        </multiRef>
+        <multiRef id="id6" soapenc:root="0" soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xsi:type="ns10:Term" xmlns:ns10="http://sakai.unicon.net/sakai-portal-services/SakaiSiteService" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+            <id xsi:type="soapenc:string">termC</id>
+            <isDefault href="#id9"/>
+            <name xsi:type="soapenc:string">termC</name>
+        </multiRef>
+        <multiRef id="id7" soapenc:root="0" soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xsi:type="xsd:boolean" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">false</multiRef>
+        <multiRef id="id8" soapenc:root="0" soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xsi:type="xsd:boolean" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">false</multiRef>
+        <multiRef id="id9" soapenc:root="0" soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xsi:type="xsd:boolean" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">false</multiRef>
+	</soapenv:Body>
+</soapenv:Envelope>
