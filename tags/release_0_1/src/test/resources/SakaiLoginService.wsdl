@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://sakai.unicon.net/sakai-portal-services/SakaiLoginService" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://sakai.unicon.net/sakai-portal-services/SakaiLoginService" xmlns:intf="http://sakai.unicon.net/sakai-portal-services/SakaiLoginService" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.2
+Built on May 03, 2005 (02:20:24 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="http://sakai.unicon.net/sakai-portal-services/SakaiLoginService" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="LoginResult">
+    <sequence>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="sessionId" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="loginPortalUserResponse">
+
+      <wsdl:part name="loginPortalUserReturn" type="impl:LoginResult"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginPortalUserRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="SakaiLoginService">
+
+      <wsdl:operation name="loginPortalUser" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:loginPortalUserRequest" name="loginPortalUserRequest"/>
+
+         <wsdl:output message="impl:loginPortalUserResponse" name="loginPortalUserResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SakaiLoginServiceSoapBinding" type="impl:SakaiLoginService">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="loginPortalUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="loginPortalUserRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://sakai.unicon.net/sakai-portal-services/SakaiLoginService" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="loginPortalUserResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://sakai.unicon.net/sakai-portal-services/SakaiLoginService" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="SakaiLoginServiceService">
+
+      <wsdl:port binding="impl:SakaiLoginServiceSoapBinding" name="SakaiLoginService">
+
+         <wsdlsoap:address location="http://localhost:8081/sakai-portal-services/services/SakaiLoginService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

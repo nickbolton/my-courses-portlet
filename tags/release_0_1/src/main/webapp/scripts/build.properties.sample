@@ -1,0 +1,20 @@
+# Property scheme assumes you're only deploying to
+# one portal per ant execution.
+#
+# Typically you'll only need to define portal.tomcat.home, 
+# and portal.webapp.home. For example, if using
+# the uPortal QuickStart distro, set:
+#
+#  portal.webapp.home=${portal.tomcat.home}/webapps/uPortal
+#
+
+portal.tomcat.home=/tools/apache-tomcat-5.5.17
+portal.webapp.home=${portal.tomcat.home}/webapps/portal
+portal.classes.home=${portal.tomcat.home}/webapps/portal/WEB-INF/classes
+portal.lib.home=${portal.tomcat.home}/webapps/portal/WEB-INF/lib
+portal.portlet.apps.deploy.home=${portal.tomcat.home}/webapps
+
+
+# This example appropriate for a Maven build
+portlet.war.name=${ant.project.name}
+portlet.war=../../../../target/${portlet.war.name}.war

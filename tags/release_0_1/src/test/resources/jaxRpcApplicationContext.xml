@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+  
+  <bean id="net.unicon.sakai.portalservices.api.SakaiLoginService" class="net.unicon.mycourses.services.DisguisedJaxRpcPortProxyFactoryBean">
+        <property name="serviceInterface">
+            <value>net.unicon.sakai.portalservices.api.SakaiLoginService</value>
+        </property>
+        
+        <!-- TODO: file system location? -->
+        <property name="wsdlDocumentUrl">
+            <!-- <value>http://localhost:8080/sakai-portal-services/services/SakaiLoginService?wsdl</value> -->
+            <value>classpath:SakaiLoginService.wsdl</value>
+        </property>
+        
+        <property name="namespaceUri">
+            <value>http://sakai.unicon.net/sakai-portal-services/SakaiLoginService</value>
+        </property>
+        <property name="serviceName">
+            <value>SakaiLoginServiceService</value>
+        </property>
+        <property name="portName">
+            <value>SakaiLoginService</value>
+        </property>
+  </bean>
+  
+  <bean id="net.unicon.sakai.portalservices.api.SakaiSiteService" class="net.unicon.mycourses.services.DisguisedJaxRpcPortProxyFactoryBean">
+        <property name="serviceInterface">
+            <value>net.unicon.sakai.portalservices.api.SakaiSiteService</value>
+        </property>
+        
+        <!-- TODO: file system location? -->
+        <property name="wsdlDocumentUrl">
+            <!--   <value>http://localhost:8080/sakai-portal-services/services/SakaiSiteService?wsdl</value> -->
+            
+            <value>classpath:SakaiSiteService.wsdl</value>
+        </property>
+        
+        <property name="namespaceUri">
+            <value>http://sakai.unicon.net/sakai-portal-services/SakaiSiteService</value>
+        </property>
+        <property name="serviceName">
+            <value>SakaiSiteServiceService</value>
+        </property>
+        <property name="portName">
+            <value>SakaiSiteService</value>
+        </property>
+  </bean>
+  
+</beans>

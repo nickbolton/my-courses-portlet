@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd
+	                    http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd"
+	version="1.0">
+
+    <portlet>
+        <portlet-name>helloworld</portlet-name>
+        <portlet-class>net.unicon.mycourses.portlet.HelloWorldPortlet</portlet-class>
+        <expiration-cache>-1</expiration-cache>		
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+            <portlet-mode>edit</portlet-mode>
+            <portlet-mode>help</portlet-mode>
+        </supports>
+        <supported-locale>en</supported-locale>
+        <portlet-info>
+            <title>Hello World Portlet</title>
+        </portlet-info>      
+    </portlet>
+
+    <portlet>
+        <portlet-name>mycourses</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+		<init-param>
+			<name>contextConfigLocation</name>
+			<value>/WEB-INF/context/portlet/mycourses.xml</value>
+		</init-param>
+        <expiration-cache>-1</expiration-cache>
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+            <portlet-mode>help</portlet-mode>
+        </supports>
+        <supported-locale>en</supported-locale>
+        <portlet-info>
+            <title>MyCourses Portlet</title>
+        </portlet-info>  
+        
+        <portlet-preferences>
+          <preference>
+            <name>net.unicon.mycourses.preferenceskeys.CONFIGURATION_SCOPE_ID</name>
+            <value>123456789abcdefghijklmnopqrstuvwxyz</value>
+            <read-only>false</read-only>
+          </preference>
+          
+          <preference>
+            <name>net.unicon.mycourses.preferenceskeys.SAKAI_PORTAL_SECRET</name>
+            <value>secret</value>
+            <read-only>false</read-only>
+          </preference>
+          
+          <preference>
+            <name>net.unicon.mycourses.preferenceskeys.SAKAI_BASE_URL</name>
+            <value>http://10.10.10.33:8080/portal</value>
+            <read-only>false</read-only>
+          </preference>          
+          
+        </portlet-preferences>    
+            
+    </portlet>
+
+	<user-attribute>
+	    <description>User ID</description>
+	    <name>uid</name>
+	</user-attribute>
+    
+</portlet-app>

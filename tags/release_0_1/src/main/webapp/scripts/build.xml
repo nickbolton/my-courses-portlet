@@ -1,0 +1,167 @@
+<!--
+/*
+ * Copyright (C) 2007 Unicon, Inc.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this distribution.  It is also available here:
+ * http://www.fsf.org/licensing/licenses/gpl.html
+ *
+ * As a special exception to the terms and conditions of version
+ * 2 of the GPL, you may redistribute this Program in connection
+ * with Free/Libre and Open Source Software ("FLOSS") applications
+ * as described in the GPL FLOSS exception.  You should have received
+ * a copy of the text describing the FLOSS exception along with this
+ * distribution.
+ */
+-->
+
+<!--    Ant targets for deploying this portlet to Pluto and uPortal containers    -->
+<!--    These targets assume you have already installed your target container(s)  -->
+<!--    They also assume these scripts are generally run either in a development  -->
+<!--    or continuous integration environment or some other environment where     -->
+<!--    the myCourses portlet has already been packaged up into a war. Packaging  -->
+<!--    that war is typically a separate process managed by a Maven2 build.       -->
+
+<project name="mycourses-portlet" basedir=".">
+
+	<property file="build.properties"/>
+	<property file="${user.home}/build.properties"/>
+
+	<!-- defaults appropriate for a Maven dev env -->
+	<property name="portal.tomcat.home" value="!!Specify in local build.properties!!" />
+	<property name="portal.webapp.home" value="${portal.tomcat.home}/webapps/portal" />
+	<property name="portal.classes.home" value="${portal.webapp.home}/WEB-INF/classes" />
+	<property name="portal.lib.home" value="${portal.webapp.home}/WEB-INF/lib" />
+	<property name="portal.portlet.apps.deploy.home" value="${portal.tomcat.home}/webapps" />
+
+	<property name="portlet.war.name" value="${ant.project.name}" />
+	<property name="portlet.war" value="../../../../target/${portlet.war.name}.war"/>
+	<property name="abs.portlet.war" location="${portlet.war}" />
+
+	<path id="uportal.classpath">
+		<pathelement path="${portal.classes.home}"/>
+		<fileset dir="${portal.lib.home}" includes="**/*.jar" />
+		<fileset dir="${portal.tomcat.home}/shared/lib">
+			<include name="pluto*.jar" />
+			<include name="portlet*.jar" />
+		</fileset>
+	</path>
+
+	<path id="pluto.classpath">
+		<fileset dir="${portal.lib.home}" includes="**/*.jar" />
+		<!-- needs org.apache.xml.serialize.XMLSerializer -->
+		<fileset dir="${portal.tomcat.home}/common/endorsed" includes="**/*.jar" />
+	</path>
+
+
+	<target name="deployUPortal" description="Alias for uPortalDeploy" depends="uPortalDeploy" />
+	<target name="deployPluto" description="Alias for plutoDeploy" depends="plutoDeploy" />
+
+
+	<target name="uPortalDeploy" description="Deploys a portlet application to uPortal">
+
+		<echo message="Deploying ${abs.portlet.war} to uPortal in Tomcat at ${portal.tomcat.home}"/>
+
+
+		<java fork="true" failonerror="true" dir="${portal.webapp.home}" classname="org.jasig.portal.container.deploy.Deployer">
+			<classpath>
+				<path refid="uportal.classpath"/>
+			</classpath>
+			<arg value="${portal.portlet.apps.deploy.home}"/>
+
+			<!-- Deployer requires absolute path to the portlet's war unless
+			     the specified relative path is relative to this fork's
+			     working dir -->
+			<arg value="${abs.portlet.war}"/>
+		</java>
+
+		<antcall target="uPortalPostDeploy" />
+
+		<!-- TODO fix this -->
+		<echo message="If you saw an error about a missing portlet.tld file, but the build returned successfully, the portlet application was deployed." />
+
+	</target>
+
+	<target name="plutoDeploy" description="Deploys a portlet application to Pluto 1.0.1">
+
+		<echo message="Deploying ${abs.portlet.war} to Pluto in Tomcat at ${portal.tomcat.home}" />
+
+		<java fork="true" failonerror="true" dir="${portal.webapp.home}" classname="org.apache.pluto.driver.deploy.CLI">
+			<classpath>
+				<path refid="pluto.classpath"/>
+			</classpath>
+
+			<arg value="-d" />
+			<arg value="${portal.portlet.apps.deploy.home}"/>
+
+			<arg value="-p" />
+			<arg value="${portal.webapp.home}"/>
+
+			<arg value="-v" />
+
+			<arg value="${abs.portlet.war}"/>
+		</java>
+
+		<antcall target="plutoPostDeploy" />
+
+		<echo message="You may still need to edit ${portal.webapp.home}/WEB-INF/data/pageregistry.xml to display your portlet app content." />
+
+
+	</target>
+
+	<!-- Deployer hoses your web.xml by adding a http://java.sun.com/dtd/web-app_2_3.dtd doctype.
+		 this post processor hacks web.xml again to remove that and restore the XMLSchema
+		 declarations -->
+	<target name="uPortalPostDeploy">
+
+		<antcall target="commonPostDeploy">
+			<reference refid="uportal.classpath" torefid="portal.post.deploy.classpath" />
+		</antcall>
+				
+	    <copy file="${portal.webapp.home}/WEB-INF/tld/portlet.tld" 
+				todir="${portal.portlet.apps.deploy.home}/${portlet.war.name}/WEB-INF/tld" />
+
+	</target>
+
+	<!-- Deployer hoses your web.xml by adding a http://java.sun.com/dtd/web-app_2_3.dtd doctype.
+				 this post processor hacks web.xml again to remove that and restore the XMLSchema
+				 declarations -->
+	<target name="plutoPostDeploy">
+
+		<antcall target="commonPostDeploy">
+			<reference refid="pluto.classpath" torefid="portal.post.deploy.classpath" />
+		</antcall>
+
+	</target>
+
+	<target name="commonPostDeploy">
+		<echo message="Correcting web.xml in ${portal.portlet.apps.deploy.home}/${portlet.war.name}" />
+
+		<java fork="true" failonerror="true" dir="${portal.webapp.home}" classname="net.unicon.mycourses.portlet.util.PortletDeploymentPostProcessor">
+
+			<classpath>
+				<path refid="portal.post.deploy.classpath" />
+				<pathelement path="${portal.portlet.apps.deploy.home}/${portlet.war.name}/WEB-INF/classes" />
+				<fileset dir="${portal.portlet.apps.deploy.home}/${portlet.war.name}/WEB-INF/lib" includes="**/*.jar" />
+			</classpath>
+
+			<arg value="${portal.portlet.apps.deploy.home}/${portlet.war.name}" />
+
+		</java>
+	</target>
+
+
+
+
+
+</project>
