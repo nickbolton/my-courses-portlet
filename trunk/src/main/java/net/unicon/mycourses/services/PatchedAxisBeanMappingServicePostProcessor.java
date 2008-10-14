@@ -41,8 +41,7 @@ public class PatchedAxisBeanMappingServicePostProcessor extends AxisBeanMappingS
      * 
      * <p>see http://springframework.cvs.sourceforge.net/springframework/spring/src/org/springframework/remoting/jaxrpc/support/AxisBeanMappingServicePostProcessor.java?revision=1.1&view=markup
      */
-    public void setBeanMappings(Properties beanMappingProps)
-    throws ClassNotFoundException {
+    public void setBeanMappings(Properties beanMappingProps) {
         
         if ( beanMappingProps == null ) {
             setBeanClasses(null); // forces internal map back to null
