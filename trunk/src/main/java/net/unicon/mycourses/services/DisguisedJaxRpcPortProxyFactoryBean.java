@@ -46,7 +46,7 @@ public class DisguisedJaxRpcPortProxyFactoryBean extends
 
     private Object serviceProxy;
 
-    public void afterPropertiesSet() throws ServiceException {
+    public void afterPropertiesSet() {
         if (getServiceInterface() == null) {
             // Use JAX-RPC port interface (a traditional RMI interface)
             // as service interface if none explicitly specified.
